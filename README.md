@@ -45,36 +45,26 @@ run `poetry add <package_name>` within the directory. Make sure to document your
 
 Clubs
 `GET /api/clubs`
-
 Retrieves a list of all clubs with their details and favorite counts.
+
 POST /api/clubs
+`Creates a new club. Requires code, name, description, and tags in the request body.`
 
-Creates a new club. Requires code, name, description, and tags in the request body.
-PATCH /api/clubs
-
+`PATCH /api/clubs`
 Updates an existing club. Requires code, newCode, newName, newDescription, and newTags in the request body.
-GET /api/clubs/search
 
+`GET /api/clubs/search`
 Searches for clubs by name. Requires name in the request body.
-Users
-GET /api/user
 
+`GET /api/user`
 Retrieves user information. Requires username in the request body.
-POST /api/user/favorite
 
+`POST /api/user/favorite`
 Adds a club to a user's favorites. Requires username and code in the request body.
-Tags
-GET /api/tags
+
+`GET /api/tags`
 Lists all tags with the number of associated clubs.
-Error Handling
-The API returns error messages in JSON format with a descriptive message.
-Utility Functions
-jsonifyErrorMsg(msg)
 
-Returns a JSON response with an error message.
-isListOfStrings(x)
-
-Checks if the input is a list of strings.
 
 ## Questions
 
