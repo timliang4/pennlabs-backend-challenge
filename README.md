@@ -44,7 +44,7 @@ run `poetry add <package_name>` within the directory. Make sure to document your
 ### Endpoints
 
 Clubs
-GET /api/clubs
+`GET /api/clubs`
 
 Retrieves a list of all clubs with their details and favorite counts.
 POST /api/clubs
