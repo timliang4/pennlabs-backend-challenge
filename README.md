@@ -53,7 +53,7 @@ Next, I also lazy loaded the clubs whenever querying for tags because I didn't n
 
 Finally, I lazy loaded the clubs whenever querying for users because I decided that the clubs a user favorited was private information, so I wouldn't be accessing that information if queried for a user.
 
-For efficient searching, I made the name attribute in the clubs model an index. So, the clubs are queries based on their name, SQL is a lot faster.
+For efficient searching, I made the name attribute in the clubs model an index. So, when the clubs are queries based on their name, SQL is a lot faster.
 
 For querying for users, I decided that the clubs a user liked was private information because that information could potentially be used to track down the user. So, I only provided the username when querying for users.
 
