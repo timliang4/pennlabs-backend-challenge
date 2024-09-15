@@ -38,3 +38,11 @@ Follow the instructions on the Technical Challenge page for submission.
 
 Use any tools you think are relevant to the challenge! To install additional packages
 run `poetry add <package_name>` within the directory. Make sure to document your additions.
+
+## Questions
+
+1. To implement signup, login, and logout features, I’d set up the POST /signup route where users provide their credentials. I’d hash the passwords using bcrypt before storing them in the database to ensure security. For login via POST /login, I'd compare the hashed password with the stored hash and, if valid, issue a session or JWT token for user authentication. The POST /logout route would handle logging out by invalidating the session or token. To protect against security threats, it’s crucial to store passwords securely, use parameterized queries to prevent SQL injection, and apply rate limiting to guard against brute force attacks. Implementing OAuth 2.0 for third-party logins and using JWT for managing sessions can further enhance the system’s robustness.
+
+2. For allowing users to post comments about clubs, I’d design a database schema with three main tables: Users, Clubs, and Comments. The Comments table would track individual comments, including a parent_comment_id to facilitate threaded replies. This setup allows us to link comments to both users and clubs, and support a hierarchical comment structure where users can reply to each other’s comments. By establishing these relationships, we ensure that comments are appropriately associated with their respective users and clubs while supporting comment chains.
+
+3. For routes that receive a lot of traffic, such as GET /clubs and GET /club/<id>, implementing caching can significantly improve performance. I would use Flask-Caching or Django-Redis to cache responses, with Redis as the backend for efficient data retrieval. It’s important to set up cache expiration to avoid serving outdated information, and to manage cache invalidation when data changes, such as when new comments are posted. For in-memory caching, cachetools can be used, and requests-cache is useful for caching external API calls. This approach helps reduce the load on the database and speeds up response times for frequently accessed routes.
