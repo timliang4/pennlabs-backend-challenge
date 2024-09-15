@@ -43,7 +43,7 @@ run `poetry add <package_name>` within the directory. Make sure to document your
 
 ## Design Choices
 
-I created classes Clubs, Users, and Tags, with a table for users "favoriting" clubs to and a table for clubs "using" tags. This way, I could represent the many-to-many relationships.
+I created models for Clubs, Users, and Tags, with a table for users "favoriting" clubs to and a table for clubs "using" tags. This way, I could represent the many-to-many relationships.
 
 For the relationship between clubs and tags, I chose to joined load the tags whenever querying for clubs because each club only has a few tags, so loading them in with their clubs using a joined load wouldn't be too data-intensive. Additionally, I needed the name of each tag of a club, and a joined load would allow me to immediately access the name of each tag via a Python list.
 
