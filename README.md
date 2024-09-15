@@ -39,6 +39,43 @@ Follow the instructions on the Technical Challenge page for submission.
 Use any tools you think are relevant to the challenge! To install additional packages
 run `poetry add <package_name>` within the directory. Make sure to document your additions.
 
+## Documentation
+
+### Endpoints
+
+Clubs
+GET /api/clubs
+
+Retrieves a list of all clubs with their details and favorite counts.
+POST /api/clubs
+
+Creates a new club. Requires code, name, description, and tags in the request body.
+PATCH /api/clubs
+
+Updates an existing club. Requires code, newCode, newName, newDescription, and newTags in the request body.
+GET /api/clubs/search
+
+Searches for clubs by name. Requires name in the request body.
+Users
+GET /api/user
+
+Retrieves user information. Requires username in the request body.
+POST /api/user/favorite
+
+Adds a club to a user's favorites. Requires username and code in the request body.
+Tags
+GET /api/tags
+Lists all tags with the number of associated clubs.
+Error Handling
+The API returns error messages in JSON format with a descriptive message.
+Utility Functions
+jsonifyErrorMsg(msg)
+
+Returns a JSON response with an error message.
+isListOfStrings(x)
+
+Checks if the input is a list of strings.
+
 ## Questions
 
 1. To implement signup, login, and logout features, I’d set up the POST /signup route where users provide their credentials. I’d hash the passwords using bcrypt before storing them in the database to ensure security. For login via POST /login, I'd compare the hashed password with the stored hash and, if valid, issue a session or JWT token for user authentication. The POST /logout route would handle logging out by invalidating the session or token. To protect against security threats, it’s crucial to store passwords securely, use parameterized queries to prevent SQL injection, and apply rate limiting to guard against brute force attacks. Implementing OAuth 2.0 for third-party logins and using JWT for managing sessions can further enhance the system’s robustness.
