@@ -41,6 +41,22 @@ run `poetry add <package_name>` within the directory. Make sure to document your
 
 ## Documentation
 
+## Design Choices
+
+I created classes Clubs, Users, and Tags, with a table for users "favoriting" clubs to and a table for clubs "using" tags. This way, I could represent the many-to-many relationships.
+
+For the relationship between clubs and tags, I chose to joined load the tags whenever querying for clubs because each club only has a few tags, so loading them in with their clubs using a joined load wouldn't be too data-intensive. Additionally, I needed the name of each tag of a club, and a joined load would allow me to immediately access the name of each tag via a Python list.
+
+On the other hand, I chose to lazy load the users who favorited a club because I didn't need a python list of Uuers who favorited the club with a bunch of information I didn't need like username. I just needed the count of users who favorited the club. So, I designed my own query that did the joining and counting within a SQL statement, which would be a lot more time and efficient.
+
+Next, I also lazy loaded the clubs whenever querying for tags because I didn't need a python list of clubs who used a certain tag with a bunch of information I didn't need. I just needed the count of clubs with a tag. So, like before, I designed my own query that did the joining and counting within a SQL statement.
+
+Finally, I lazy loaded the clubs whenever querying for users because I decided that the clubs a user favorited was private information, so I wouldn't be accessing that information if queried for a user.
+
+For efficient searching, I made the name attribute in the clubs model an index. So, the clubs are queries based on their name, SQL is a lot faster.
+
+For querying for users, I decided that the clubs a user liked was private information because that information could potentially be used to track down the user. So, I only provided the username when querying for users.
+
 ### Endpoints
 
 Clubs
