@@ -47,8 +47,8 @@ Clubs
 `GET /api/clubs`
 Retrieves a list of all clubs with their details and favorite counts.
 
-POST /api/clubs
-`Creates a new club. Requires code, name, description, and tags in the request body.`
+`POST /api/clubs`
+Creates a new club. Requires code, name, description, and tags in the request body.
 
 `PATCH /api/clubs`
 Updates an existing club. Requires code, newCode, newName, newDescription, and newTags in the request body.
