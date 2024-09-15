@@ -13,14 +13,9 @@ def create_user():
 def load_data():
     with open('clubs.json', 'r') as f:
         clubs = json.load(f)
-        usr = User(username='mike')
         for club_dict in clubs:
             club = Club(code=club_dict['code'], name=club_dict['name'], 
                 description=club_dict['description'])
-            if (club_dict['code'] == 'locustlabs'):
-                club.favorited_by.append(usr)
-            elif club_dict['code'] == 'pppp':
-                club.favorited_by.append(usr)
             db.session.add(club)
             for tag_name in club_dict['tags']:
                 tag = Tag.query.filter_by(name=tag_name).first()
